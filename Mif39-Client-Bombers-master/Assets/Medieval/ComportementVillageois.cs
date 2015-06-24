@@ -25,7 +25,7 @@ public class ComportementVillageois : MonoBehaviour {
 	int c=0;
 	int compteurRot=0;
 	int r=0;
-	public Text t ; 
+	//public Text t ; 
 
 	// Use this for initialization
 	void Start () 
@@ -38,13 +38,13 @@ public class ComportementVillageois : MonoBehaviour {
 
 		roiArthur = GameObject.Find ("Arthur");
 
-		t.enabled = false; 
+		//t.enabled = false; 
 
 		if (UnityEngine.Random.Range (0, 2) == 0)
 			connaissance = true;
 		else 
 			connaissance = false; 
-		connaissance = true;
+		//connaissance = true;
 		vu = 0; // sinon vu = 100 
 
 
@@ -147,7 +147,7 @@ public class ComportementVillageois : MonoBehaviour {
 			if(vu==0){
 				transform.LookAt(roiArthur.transform.position);
 				print ( transform.gameObject.name + " dit: Hey Arthur !!!");
-				t.enabled = true ; 
+//				t.enabled = true ; 
 			}
 			vu ++;
 		} else if (connaissance) {

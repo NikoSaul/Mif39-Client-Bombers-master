@@ -9,8 +9,6 @@ Project("{5F44EB36-7D4D-B00F-C5EE-CF69DD991441}") = "Mif39-Client-Bombers-master
 EndProject
 Project("{5F44EB36-7D4D-B00F-C5EE-CF69DD991441}") = "Mif39-Client-Bombers-master", "Assembly-UnityScript-firstpass.unityproj", "{49E74F3A-5BB2-DF9D-4012-0EF437AFF4D0}"
 EndProject
-Project("{5F44EB36-7D4D-B00F-C5EE-CF69DD991441}") = "Mif39-Client-Bombers-master", "Assembly-UnityScript.unityproj", "{37245917-62A7-78AC-BE4A-E5C1C084DF5A}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,15 +31,11 @@ Global
 		{49E74F3A-5BB2-DF9D-4012-0EF437AFF4D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{49E74F3A-5BB2-DF9D-4012-0EF437AFF4D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{49E74F3A-5BB2-DF9D-4012-0EF437AFF4D0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{37245917-62A7-78AC-BE4A-E5C1C084DF5A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{37245917-62A7-78AC-BE4A-E5C1C084DF5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{37245917-62A7-78AC-BE4A-E5C1C084DF5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{37245917-62A7-78AC-BE4A-E5C1C084DF5A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-							GlobalSection(MonoDevelopProperties) = preSolution
+											GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = Assembly-CSharp.csproj
 		Policies = $0
 		$0.TextStylePolicy = $1
