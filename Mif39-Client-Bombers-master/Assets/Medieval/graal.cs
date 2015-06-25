@@ -16,7 +16,7 @@ public class graal : MonoBehaviour {
 
 	void OnCollisionEnter(Collision collision)
 	{
-		if (Vector3.Distance (collision.transform.position, roiArthur.transform.position) <= 10) {
+		if (Vector3.Distance (collision.transform.position, roiArthur.transform.position) <= 1) {
 			//Debug.Log (" Arthure GAGNE ! ");
 			t.enabled = true ;  
 		}

@@ -8,14 +8,15 @@ using UnityEngine.UI;
 // + mesh collider sur tout les perso 
 
 public class ComportementVillageois : MonoBehaviour {
-
+	Animator animator;
 	// EN PARAMETRE : VITESSE , POSITION( x , y ,z ) serveur (vecteur de vector3 ?)
 	// On suppose que les positions d'initialisation des villageois sont prévues hors collision
 	float marcher = 1f ; 
-	float trot = 2f ;
-	float courir = 5f ;
+
+	float courir = 2f ;
 	float arret = 0f ;
 	float vitesse ; 
+	 
 	//float x , y , z ; 
 	GameObject roiArthur;
 	bool connaissance;
@@ -25,11 +26,13 @@ public class ComportementVillageois : MonoBehaviour {
 	int c=0;
 	int compteurRot=0;
 	int r=0;
-	//public Text t ; 
+	public Text t ; 
 
 	// Use this for initialization
 	void Start () 
 	{
+		//t = new Canvas ();
+		//GameObject.
 		// On suppose que l'objet a dejà tout ce qu'il faut, i.e un rigidbody, un meshrenderer (ou skinnedMeshRendrer sur le fils), un box collider à la bonne taille.
 		// Pour avoir le meme box collider pour tout objet de type Anna jeune : mettre anna dans la scene, ajouter ce qu'il faut dont le box collider, mettre le centre
 		// de son maillage (fils Polygon dans cet exemple) en centre du box collider d'anna, et mettre deux fois les tailles des extents du maillage comme taille du box collider
@@ -37,7 +40,7 @@ public class ComportementVillageois : MonoBehaviour {
 		// enfin, mettre le prefab dans le script initialisation
 
 		roiArthur = GameObject.Find ("Arthur");
-
+		animator = GetComponent<Animator> ();
 		//t.enabled = false; 
 
 		if (UnityEngine.Random.Range (0, 2) == 0)
@@ -99,12 +102,10 @@ public class ComportementVillageois : MonoBehaviour {
 				// Eventuellement, ajouter une gestion de manière à ce que un enfant qui ait courru 30km passe à l'arret (energie)
 				if (type == 0) {// c'est un enfant, on gère le comportement de la vitesse
 					enfant ();
+
 				} else if (type == 1) {// c'est un adulte
 					adulte ();
-				} else {// vieux
-					vieux ();
 				}
-			
 				v = 0; 
 			}
 			v++;
@@ -145,7 +146,7 @@ public class ComportementVillageois : MonoBehaviour {
 		if (connaissance && (Vector3.Distance (transform.position, roiArthur.transform.position) <= 10)&& vu<60  ) {
 
 			if(vu==0){
-				transform.LookAt(roiArthur.transform.position);
+				//transform.LookAt(roiArthur.transform.position);
 				print ( transform.gameObject.name + " dit: Hey Arthur !!!");
 //				t.enabled = true ; 
 			}
@@ -173,31 +174,33 @@ public class ComportementVillageois : MonoBehaviour {
 	void enfant() {
 		int rand = UnityEngine.Random.Range(0,100); 
 
-		if (rand < 15) 
+		if (rand < 15) {
+			animator.SetInteger ("allure", 0); 
 			vitesse = arret;
-		else if (rand < 65 && rand > 15)
-			vitesse = trot;
-		else 
+		} else if (rand < 65 && rand > 15) {
+			animator.SetInteger ("allure", 1); 
+			vitesse = marcher;
+		} else {
+			animator.SetInteger ("allure", 2); 
 			vitesse = courir;
+		}
 	}
 
 	void adulte() {
 		int rand = UnityEngine.Random.Range(0, 100); 
 		
-		if (rand < 50) 
+		if (rand < 50) {
+			animator.SetInteger ("allure", 0); 
 			vitesse = arret;
-		else if (rand < 85 && rand > 50)
+		} else if (rand < 85 && rand > 50) {
+			animator.SetInteger ("allure", 1); 
 			vitesse = marcher;
-		else 
-			vitesse = trot;
+		} else {
+			animator.SetInteger ("allure", 2); 
+			vitesse = courir;
+		}
 	}
 
-	void vieux() {
-		int rand = UnityEngine.Random.Range(0, 100); 
-		
-		if (rand < 60) 
-			vitesse = arret;
-		else 
-			vitesse = marcher;
-	}
+
+
 }

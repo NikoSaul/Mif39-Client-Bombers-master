@@ -34,7 +34,7 @@ public class Initialisation : MonoBehaviour {
 			GameObject temp = new GameObject() ; 
 
 
-			int comp =Random.Range(0, 2);//Random.Range (0, 3);
+			int comp =Random.Range(0, 1);//Random.Range (0, 3);
 			int sex=Random.Range(0, 2);
 			if (comp == 0) 
 			{// c'est un enfant
@@ -44,21 +44,15 @@ public class Initialisation : MonoBehaviour {
 				if(sex==1)
 					temp = (GameObject) Instantiate(kidboy,posVillageois[i], Quaternion.identity) ;
 			} 
-			else if (comp == 1) 
+			else 
 			{// c'est un adulte;
 				if(sex==0)
 					temp = (GameObject) Instantiate(woman,posVillageois[i], Quaternion.identity) ; 
 				if(sex==1)
 					temp = (GameObject) Instantiate(man,posVillageois[i], Quaternion.identity);
 			} 
-			else 
-			{// vieux
-				if(sex==0)
-					temp = (GameObject) Instantiate(kidgirl,posVillageois[i], Quaternion.identity) ; 
-				if(sex==1)
-					temp = (GameObject) Instantiate(kidboy,posVillageois[i], Quaternion.identity);
-			}
 
+			temp.AddComponent<Text>();// as Text ; 
 			temp.AddComponent<ComportementVillageois>() ;
 			 
 
