@@ -1,5 +1,7 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
+
 
 public class Bombers : MonoBehaviour {
 
@@ -7,10 +9,10 @@ public class Bombers : MonoBehaviour {
 	public float vitesse ; 
 	public GameObject roiArthur;
 	public int degat;
+	public bool damages;
 
 	Renderer rend;
 
-	// Pour l'instant, on suppose que le villageois (personnage) est présent dans la map, on va y attacher ce script de comportement
 	// Use this for initialization
 	void Start () 
 	{
@@ -18,6 +20,7 @@ public class Bombers : MonoBehaviour {
 		degat = 50;
 		roiArthur = GameObject.Find ("Arthur");
 		vitesse = 0.08f; 
+		damages = false;
 	}
 	
 	// Update is called once per frame
@@ -26,7 +29,6 @@ public class Bombers : MonoBehaviour {
 		int wait = 0;
 		RaycastHit hit, hitr, hitl;
 		float distance, distancer, distancel;
-//		print (roiArthur.transform.GetComponent ("Arthur"));
 
 		if (Physics.Raycast (transform.position, transform.forward, out hit)) {
 			distance = hit.distance; 
@@ -70,7 +72,7 @@ public class Bombers : MonoBehaviour {
 			
 		}
 
-		//si Arthur est dans un rayon <=10
+		//si Arthur est dans un rayon <=10 le bomber court
 		if (Vector3.Distance (transform.position, roiArthur.transform.position) <= 10) {
 			
 			vitesse *= 2;
@@ -79,22 +81,19 @@ public class Bombers : MonoBehaviour {
 		} else{
 			
 			transform.position += transform.forward*vitesse;
-			
+
 		}
 
-		//si arthur est proche le bomber explose
-		if (Vector3.Distance (transform.position, roiArthur.transform.position) <= 2) {
+		//si arthur est proche le bomber explose et inflige des dégats
+		if ((Vector3.Distance (transform.position, roiArthur.transform.position) <= 2) && damages==false) {
 			wait++;
 			vitesse*=2;
 			(transform.gameObject.GetComponent("Detonator") as Behaviour).enabled = true;
-			//on attend un peu avant l'explosion
-			if(wait == 10){ 
-				wait=0;
-				//Destroy(transform.gameObject);
-				//cache la boule
-				rend.enabled=false;
+			roiArthur.GetComponent<Myhealthbar>().SetDamages(0.25f);
+			damages=true;
+			rend.enabled=false;
 
-			}
+
 		}
 	}
 }
